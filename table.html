@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!-- Bootstrap CSS CDN -->
+<link href=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity=
+"sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+      crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container pt-4">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                              Row Number
+                          </th>
+                        <th class="text-center">
+                              Remove Row
+                          </th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-md btn-primary" 
+                id="addBtn" type="button">
+            Add New Row
+        </button>
+    </div>
+
+<!-- Bootstrap JS CDN -->
+    <script src=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+        integrity=
+"sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+        crossorigin="anonymous">
+    </script>
+<!-- jQuery CDN -->
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
+            integrity=
+"sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+      </script>
+<script>
+    $(document).ready(() => {
+        let count=1;
+
+        // Adding row on click to Add New Row button
+        $('#addBtn').click(function () {
+            let dynamicRowHTML = `
+            <tr class="rowClass""> 
+                <td class="row-index text-center"> 
+                    Dynamically added Row ${count}
+                </td> 
+                <td class="text-center"> 
+                    <button class="btn btn-danger remove"
+                        type="button">Remove
+                    </button> 
+                </td> 
+            </tr>`;
+            $('#tbody').append(dynamicRowHTML);
+            count++;
+        });
+
+        // Removing Row on click to Remove button
+        $('#tbody').on('click', '.remove', function () {
+            $(this).parent('td.text-center').parent('tr.rowClass').remove(); 
+        });
+    })
+</script>
+</body>
+
+</html>
